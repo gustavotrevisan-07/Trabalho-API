@@ -31,7 +31,9 @@ public class PointService {
 
         point.setId(UUID.randomUUID());
         point.setName(pointRequest.name().trim());
-        point.setDescription(pointRequest.description().trim());
+        point.setDescription(
+                pointRequest.description() == null ? "" : pointRequest.description().trim()
+        );
         point.setLatitude(pointRequest.latitude());
         point.setLongitude(pointRequest.longitude());
 
