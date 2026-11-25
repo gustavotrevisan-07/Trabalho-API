@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/points")
@@ -47,6 +48,13 @@ public class PointController {
     @GetMapping
     public ResponseEntity<List<PointEntity>> findAll() {
         List<PointEntity> response = service.findAll();
+
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<PointEntity> findById(@PathVariable UUID id) {
+
+        PointEntity response = service.findById(id);
 
         return ResponseEntity.ok(response);
     }
