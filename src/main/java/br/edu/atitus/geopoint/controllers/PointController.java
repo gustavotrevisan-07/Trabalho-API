@@ -6,6 +6,7 @@ import br.edu.atitus.geopoint.services.PointService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -42,5 +43,11 @@ public class PointController {
         return ResponseEntity
                 .status(500)
                 .body("Erro interno do servidor.");
+    }
+    @GetMapping
+    public ResponseEntity<List<PointEntity>> findAll() {
+        List<PointEntity> response = service.findAll();
+
+        return ResponseEntity.ok(response);
     }
 }
