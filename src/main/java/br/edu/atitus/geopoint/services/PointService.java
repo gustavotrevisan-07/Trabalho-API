@@ -49,7 +49,7 @@ public class PointService {
         validar(pointRequest);
         PointEntity point = montar(UUID.randomUUID(), pointRequest);
 
-        // não permite dois pontos com o mesmo nome
+
         if (repository.existsByName(point.getName()))
             throw new RuntimeException("Já existe um ponto cadastrado com o nome: " + point.getName());
 
@@ -68,11 +68,10 @@ public class PointService {
     }
 
     public PointEntity update(UUID id, PointRequest pointRequest) {
-        findById(id); // lança NoSuchElementException (404) se o ponto não existir
-        validar(pointRequest);
+        findById(id);
         PointEntity point = montar(id, pointRequest);
 
-        // outro ponto (id diferente) não pode ter o mesmo nome; o próprio ponto pode manter o seu
+
         if (repository.existsByNameAndIdNot(point.getName(), id))
             throw new RuntimeException("Já existe um ponto cadastrado com o nome: " + point.getName());
 
@@ -81,7 +80,7 @@ public class PointService {
     }
 
     public void delete(UUID id) {
-        findById(id); // lança NoSuchElementException (404) se não existir
+        findById(id);
         repository.delete(id);
     }
 }
