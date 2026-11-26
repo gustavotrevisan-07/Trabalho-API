@@ -69,6 +69,7 @@ public class PointService {
 
     public PointEntity update(UUID id, PointRequest pointRequest) {
         findById(id);
+        validar(pointRequest);
         PointEntity point = montar(id, pointRequest);
 
 
@@ -83,4 +84,6 @@ public class PointService {
         findById(id);
         repository.delete(id);
     }
+
+
 }

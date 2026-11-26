@@ -58,5 +58,18 @@ public class PointController {
 
         return ResponseEntity.ok(response);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<PointEntity> update(
+            @PathVariable UUID id,
+            @RequestBody PointRequest pointRequest){
+        PointEntity point = service.update(id, pointRequest);
+        return ResponseEntity.ok(point);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
